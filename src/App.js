@@ -12,7 +12,6 @@ import {
   CardMedia,
   Chip,
   Stack,
-  Divider,
   Slider,
   Button,
   Tabs,
