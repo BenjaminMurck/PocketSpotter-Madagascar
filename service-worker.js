@@ -18,7 +18,8 @@ const STATIC_ASSETS = [
   '/PocketSpotter-Madagascar/service-worker.js',
   '/PocketSpotter-Madagascar/images/pocketspot-logo-192.png',
   '/PocketSpotter-Madagascar/images/pocketspot-logo-512.png',
-  '/PocketSpotter-Madagascar/images/pocketspot-logo.png'
+  '/PocketSpotter-Madagascar/images/pocketspot-logo.png',
+  '/PocketSpotter-Madagascar/images/animals/placeholder.webp'
 ].map(getPath);
 
 // API endpoints die offline beschikbaar moeten zijn
