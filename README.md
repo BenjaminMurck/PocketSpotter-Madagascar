@@ -56,4 +56,8 @@ Om nieuwe dieren toe te voegen, bewerk het bestand `src/data/animals.json`. Voeg
   - @mui/system
 - Emotion voor styling
 - React Virtuoso voor efficiënte lijstweergave
-- JSON voor dataopslag 
+- JSON voor dataopslag
+
+## Deployment
+
+De applicatie wordt automatisch gedeployed naar GitHub Pages via GitHub Actions. De laatste deployment status is te zien in de Actions tab van de repository. 
