@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/PocketSpotter-Madagascar/static/css/main.85f877ee.css",
-    "main.js": "/PocketSpotter-Madagascar/static/js/main.bb65678d.js",
+    "main.js": "/PocketSpotter-Madagascar/static/js/main.e9e4c01c.js",
     "index.html": "/PocketSpotter-Madagascar/index.html",
     "main.85f877ee.css.map": "/PocketSpotter-Madagascar/static/css/main.85f877ee.css.map",
-    "main.bb65678d.js.map": "/PocketSpotter-Madagascar/static/js/main.bb65678d.js.map"
+    "main.e9e4c01c.js.map": "/PocketSpotter-Madagascar/static/js/main.e9e4c01c.js.map"
   },
   "entrypoints": [
     "static/css/main.85f877ee.css",
-    "static/js/main.bb65678d.js"
+    "static/js/main.e9e4c01c.js"
   ]
 }
