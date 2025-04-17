@@ -690,7 +690,7 @@ function App() {
             }}>
               <Box
                 component="img"
-                src="/images/pocketspot-logo.png"
+                src="/PocketSpotter-Madagascar/images/pocketspot-logo.png"
                 alt="PocketSpot Logo"
                 sx={{
                   height: { xs: '80px', sm: '100px' },

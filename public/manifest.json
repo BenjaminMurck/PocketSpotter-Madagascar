@@ -1,20 +1,20 @@
 {
   "short_name": "PocketSpotter",
-  "name": "PocketSpotter - Madagascar Wildlife Guide",
+  "name": "PocketSpotter Madagascar",
   "icons": [
     {
-      "src": "images/pocketspot-logo-192.png",
+      "src": "/PocketSpotter-Madagascar/images/pocketspot-logo-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "images/pocketspot-logo-512.png",
+      "src": "/PocketSpotter-Madagascar/images/pocketspot-logo-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "start_url": "/PocketSpotter-Madagascar",
+  "start_url": "/PocketSpotter-Madagascar/",
   "display": "standalone",
-  "theme_color": "#2e7d32",
+  "theme_color": "#000000",
   "background_color": "#ffffff"
 } 
