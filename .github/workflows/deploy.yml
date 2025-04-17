@@ -1,0 +1,49 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm list --depth=0
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+
+      - name: Build
+        run: |
+          npm run build
+          ls -la build
+          echo "Build directory contents:"
+          find build -type f
+          echo "Checking for build errors:"
+          cat build/asset-manifest.json || true
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
+          branch: gh-pages
+          clean: true
+          clean-exclude: |
+            .git
+            .gitignore 
