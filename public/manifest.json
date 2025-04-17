@@ -1,0 +1,21 @@
+{
+  "short_name": "PocketSpotter",
+  "name": "PocketSpotter - Madagascar 2025",
+  "icons": [
+    {
+      "src": "/images/pocketspot-logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/pocketspot-logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#2e7d32",
+  "theme_color": "#2e7d32",
+  "orientation": "portrait"
+} 
