@@ -403,6 +403,15 @@ const CardBack = ({ animal, onClose }) => {
   );
 };
 
+const CardFront = styled(Card)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition: transform 0.6s;
+  transform: ${props => props.flipped ? 'rotateY(180deg)' : 'rotateY(0)'};
+`;
+
 const theme = createTheme({
   palette: {
     mode: 'light',
