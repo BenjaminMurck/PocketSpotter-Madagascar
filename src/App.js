@@ -906,40 +906,42 @@ function App() {
                       borderRadius: 'inherit'
                     }
                   }}
-                >
-                  <Typography 
-                    variant="caption" 
-                    sx={{ 
-                      color: 'white',
-                      fontFamily: '"Playfair Display", serif',
-                      fontStyle: 'italic',
-                      fontSize: '0.8rem',
-                      fontWeight: 500,
-                      letterSpacing: '0.5px',
-                      textShadow: '0 1px 2px rgba(0,0,0,0.5)',
-                      zIndex: 1,
-                      lineHeight: 1,
-                      padding: '4px 0',
-                      position: 'relative',
+                />
+                <Typography 
+                  variant="caption" 
+                  sx={{ 
+                    color: 'white',
+                    fontFamily: '"Playfair Display", serif',
+                    fontStyle: 'italic',
+                    fontSize: '0.8rem',
+                    fontWeight: 500,
+                    letterSpacing: '0.5px',
+                    textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                    zIndex: 1,
+                    lineHeight: 1,
+                    padding: '4px 0',
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '1px',
+                    height: '20px',
+                    '& .number, & .percentage': {
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '1px',
-                      height: '20px',
-                      '& .number, & .percentage': {
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        height: '1em',
-                        lineHeight: 1,
-                        fontStyle: 'italic'
-                      }
-                    }}
-                  >
-                    <span className="number">
-                      {Math.round((Object.values(spottedAnimals).filter(Boolean).length / animalsData.animals.length) * 100)}
-                    </span>
-                    <span className="percentage">%</span>
-                  </Typography>
-                </Box>
+                      height: '1em',
+                      lineHeight: 1,
+                      fontStyle: 'italic'
+                    }
+                  }}
+                >
+                  <span className="number">
+                    {Math.round((Object.values(spottedAnimals).filter(Boolean).length / animalsData.animals.length) * 100)}
+                  </span>
+                  <span className="percentage">%</span>
+                </Typography>
               </Box>
             </Box>
 
@@ -1131,17 +1133,25 @@ function App() {
               </>
             )}
 
-            {filteredAnimals.length === 0 ? (
+            {activeTab === 2 ? (
+              Object.keys(spottedAnimals).length === 0 ? (
+                <Box sx={{ textAlign: 'center', py: 4 }}>
+                  <Typography variant="h6" color="text.secondary">
+                    Je hebt nog geen dieren gespot.
+                  </Typography>
+                </Box>
+              ) : (
+                <Timeline spottedAnimals={spottedAnimals} animalsData={animalsData} />
+              )
+            ) : filteredAnimals.length === 0 ? (
               <Box sx={{ textAlign: 'center', py: 4 }}>
                 <Typography variant="h6" color="text.secondary">
                   {activeTab === 1 ? 
-                    "Je hebt nog geen dieren gespot die aan de filters voldoen." :
+                    "Je hebt nog geen dieren gespot." :
                     "Geen dieren gevonden die aan de filters voldoen."
                   }
                 </Typography>
               </Box>
-            ) : activeTab === 2 ? (
-              <Timeline spottedAnimals={spottedAnimals} animalsData={animalsData} />
             ) : (
               <Grid container spacing={1}>
                 {filteredAnimals.map(animal => (
