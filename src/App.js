@@ -24,7 +24,8 @@ import {
   Pets as PetsIcon,
   Straighten as SizeIcon,
   Palette as ColorIcon,
-  RestartAlt as ResetIcon
+  RestartAlt as ResetIcon,
+  CalendarMonth as CalendarMonthIcon
 } from '@mui/icons-material';
 import Timeline from './components/Timeline';
 
@@ -749,11 +750,15 @@ function App() {
             <Tabs 
               value={activeTab} 
               onChange={handleTabChange} 
-              variant="fullWidth"
-              textColor="primary"
+              variant="standard"
               indicatorColor="primary"
               sx={{
                 minHeight: '56px',
+                display: 'flex',
+                '& .MuiTabs-flexContainer': {
+                  width: '100%',
+                  display: 'flex'
+                },
                 '& .MuiTabs-indicator': {
                   height: '3px',
                   borderRadius: 0,
@@ -766,6 +771,15 @@ function App() {
                   fontWeight: 600,
                   color: 'text.secondary',
                   opacity: 0.7,
+                  flex: 1,
+                  padding: '12px',
+                  '&:nth-of-type(2)': {
+                    flex: 0.8
+                  },
+                  '&:last-child': {
+                    flex: 0.3,
+                    minWidth: '48px'
+                  },
                   '&.Mui-selected': {
                     color: '#2e7d32',
                     opacity: 1
@@ -779,7 +793,8 @@ function App() {
                     display: 'flex', 
                     alignItems: 'center', 
                     gap: 1,
-                    py: 0.5
+                    py: 0.5,
+                    whiteSpace: 'nowrap'
                   }}>
                     <span>Alle dieren</span>
                     <Chip 
@@ -798,7 +813,7 @@ function App() {
                       }}
                     />
                   </Box>
-                } 
+                }
               />
               <Tab 
                 label={
@@ -806,7 +821,10 @@ function App() {
                     display: 'flex', 
                     alignItems: 'center', 
                     gap: 1,
-                    py: 0.5
+                    py: 0.5,
+                    whiteSpace: 'nowrap',
+                    width: 'auto',
+                    minWidth: 'unset'
                   }}>
                     <span>Gespot</span>
                     <Chip 
@@ -825,19 +843,25 @@ function App() {
                       }}
                     />
                   </Box>
-                } 
+                }
+                sx={{
+                  '& .MuiTab-wrapper': {
+                    width: 'auto'
+                  }
+                }}
               />
               <Tab 
                 label={
                   <Box sx={{ 
                     display: 'flex', 
-                    alignItems: 'center', 
-                    gap: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
                     py: 0.5
                   }}>
-                    <span>Tijdlijn</span>
+                    <CalendarMonthIcon sx={{ fontSize: 20 }} />
                   </Box>
-                } 
+                }
               />
             </Tabs>
           </Box>
