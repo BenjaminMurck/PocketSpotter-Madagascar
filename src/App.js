@@ -26,6 +26,7 @@ import {
   Palette as ColorIcon,
   RestartAlt as ResetIcon
 } from '@mui/icons-material';
+import Timeline from './components/Timeline';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: 'relative',
@@ -826,6 +827,18 @@ function App() {
                   </Box>
                 } 
               />
+              <Tab 
+                label={
+                  <Box sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: 1,
+                    py: 0.5
+                  }}>
+                    <span>Tijdlijn</span>
+                  </Box>
+                } 
+              />
             </Tabs>
           </Box>
           
@@ -930,189 +943,193 @@ function App() {
               </Box>
             </Box>
 
-            <Paper 
-              sx={{ 
-                mb: 0,
-                p: 1.5,
-                pb: 2,
-                backgroundColor: '#1b5e20',
-                borderRadius: '8px 8px 0 0',
-                border: '1px solid',
-                borderBottom: 'none',
-                borderColor: 'rgba(255,255,255,0.1)',
-                color: 'white',
-                background: `linear-gradient(165deg, 
-                  #2e7d32 0%, 
-                  #1b5e20 100%)`,
-                boxShadow: 'none'
-              }}
-              elevation={0}
-            >
-              <Stack spacing={2.5}>
-                <FilterSection
-                  icon={PetsIcon}
-                  category="type"
-                  values={uniqueValues('type')}
-                  selectedValues={filters.type}
-                  onValueClick={handleFilterClick}
-                />
-
-                <FilterSection
-                  icon={ColorIcon}
-                  category="color"
-                  values={uniqueValues('color')}
-                  selectedValues={filters.color}
-                  onValueClick={handleFilterClick}
-                />
-
-                <Box>
-                  <Box sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center',
-                    gap: 1.5
-                  }}>
-                    <SizeIcon 
-                      sx={{ 
-                        fontSize: 20,
-                        color: 'rgba(255,255,255,0.9)',
-                        width: 20
-                      }}
+            {activeTab === 0 && (
+              <>
+                <Paper 
+                  sx={{ 
+                    mb: 0,
+                    p: 1.5,
+                    pb: 2,
+                    backgroundColor: '#1b5e20',
+                    borderRadius: '8px 8px 0 0',
+                    border: '1px solid',
+                    borderBottom: 'none',
+                    borderColor: 'rgba(255,255,255,0.1)',
+                    color: 'white',
+                    background: `linear-gradient(165deg, 
+                      #2e7d32 0%, 
+                      #1b5e20 100%)`,
+                    boxShadow: 'none'
+                  }}
+                  elevation={0}
+                >
+                  <Stack spacing={2.5}>
+                    <FilterSection
+                      icon={PetsIcon}
+                      category="type"
+                      values={uniqueValues('type')}
+                      selectedValues={filters.type}
+                      onValueClick={handleFilterClick}
                     />
-                    <Box sx={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: 1,
-                      flexGrow: 1,
-                      backgroundColor: 'rgba(0,0,0,0.2)',
-                      borderRadius: 1.5,
-                      py: 0.75,
-                      px: 1,
-                      border: '1px solid',
-                      borderColor: 'rgba(255,255,255,0.1)'
-                    }}>
-                      <Typography 
-                        variant="caption" 
-                        sx={{ 
-                          color: 'rgba(255,255,255,0.9)',
-                          fontWeight: 500,
-                          minWidth: '20px',
-                          textAlign: 'right'
-                        }}
-                      >
-                        {sizeRange[0]}
-                      </Typography>
-                      <Slider
-                        value={sizeRange}
-                        onChange={handleSizeChange}
-                        valueLabelDisplay="auto"
-                        min={minSize}
-                        max={maxSize}
-                        size="small"
-                        sx={{ 
-                          mx: 0.5,
-                          '& .MuiSlider-rail': {
-                            opacity: 0.32,
-                            backgroundColor: 'rgba(0,0,0,0.3)'
-                          },
-                          '& .MuiSlider-track': {
-                            border: 'none',
-                            backgroundColor: 'white'
-                          },
-                          '& .MuiSlider-thumb': {
-                            width: 12,
-                            height: 12,
-                            backgroundColor: 'white',
-                            boxShadow: '0 1px 2px rgba(0,0,0,0.2)',
-                            '&:hover, &.Mui-focusVisible': {
-                              boxShadow: `0 0 0 6px rgba(255,255,255,0.16)`
-                            },
-                            '&.Mui-active': {
-                              boxShadow: `0 0 0 8px rgba(255,255,255,0.16)`
-                            }
-                          },
-                          '& .MuiSlider-valueLabel': {
-                            backgroundColor: '#1b5e20'
-                          }
-                        }}
-                      />
-                      <Typography 
-                        variant="caption" 
-                        sx={{ 
-                          color: 'rgba(255,255,255,0.9)',
-                          fontWeight: 500,
-                          minWidth: '20px'
-                        }}
-                      >
-                        {sizeRange[1]}
-                      </Typography>
+
+                    <FilterSection
+                      icon={ColorIcon}
+                      category="color"
+                      values={uniqueValues('color')}
+                      selectedValues={filters.color}
+                      onValueClick={handleFilterClick}
+                    />
+
+                    <Box>
+                      <Box sx={{ 
+                        display: 'flex', 
+                        alignItems: 'center',
+                        gap: 1.5
+                      }}>
+                        <SizeIcon 
+                          sx={{ 
+                            fontSize: 20,
+                            color: 'rgba(255,255,255,0.9)',
+                            width: 20
+                          }}
+                        />
+                        <Box sx={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: 1,
+                          flexGrow: 1,
+                          backgroundColor: 'rgba(0,0,0,0.2)',
+                          borderRadius: 1.5,
+                          py: 0.75,
+                          px: 1,
+                          border: '1px solid',
+                          borderColor: 'rgba(255,255,255,0.1)'
+                        }}>
+                          <Typography 
+                            variant="caption" 
+                            sx={{ 
+                              color: 'rgba(255,255,255,0.9)',
+                              fontWeight: 500,
+                              minWidth: '20px',
+                              textAlign: 'right'
+                            }}
+                          >
+                            {sizeRange[0]}
+                          </Typography>
+                          <Slider
+                            value={sizeRange}
+                            onChange={handleSizeChange}
+                            valueLabelDisplay="auto"
+                            min={minSize}
+                            max={maxSize}
+                            size="small"
+                            sx={{ 
+                              mx: 0.5,
+                              '& .MuiSlider-rail': {
+                                opacity: 0.32,
+                                backgroundColor: 'rgba(0,0,0,0.3)'
+                              },
+                              '& .MuiSlider-track': {
+                                border: 'none',
+                                backgroundColor: 'white'
+                              },
+                              '& .MuiSlider-thumb': {
+                                width: 12,
+                                height: 12,
+                                backgroundColor: 'white',
+                                boxShadow: '0 1px 2px rgba(0,0,0,0.2)',
+                                '&:hover, &.Mui-focusVisible': {
+                                  boxShadow: `0 0 0 6px rgba(255,255,255,0.16)`
+                                },
+                                '&.Mui-active': {
+                                  boxShadow: `0 0 0 8px rgba(255,255,255,0.16)`
+                                }
+                              },
+                              '& .MuiSlider-valueLabel': {
+                                backgroundColor: '#1b5e20'
+                              }
+                            }}
+                          />
+                          <Typography 
+                            variant="caption" 
+                            sx={{ 
+                              color: 'rgba(255,255,255,0.9)',
+                              fontWeight: 500,
+                              minWidth: '20px'
+                            }}
+                          >
+                            {sizeRange[1]}
+                          </Typography>
+                        </Box>
+                      </Box>
                     </Box>
-                  </Box>
-                </Box>
-              </Stack>
-            </Paper>
-            <Button
-              variant="outlined"
-              startIcon={<ResetIcon />}
-              onClick={resetFilters}
-              size="small"
-              sx={{
-                width: '100%',
-                borderRadius: '0 0 8px 8px',
-                textTransform: 'none',
-                color: 'white',
-                background: `linear-gradient(165deg, 
-                  #ff7043 0%,
-                  #f4511e 100%)`,
-                fontSize: '0.8125rem',
-                fontWeight: 500,
-                py: 1.5,
-                border: '1px solid rgba(255,87,34,0.3)',
-                borderTop: 'none',
-                position: 'relative',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease-in-out',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-                mb: 3,
-                '&:hover': {
-                  background: `linear-gradient(165deg, 
-                    #ff7043 0%,
-                    #f4511e 100%)`,
-                  border: '1px solid rgba(255,87,34,0.3)',
-                  borderTop: 'none',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
-                },
-                '&:focus': {
-                  outline: 'none',
-                  background: `linear-gradient(165deg, 
-                    #ff7043 0%,
-                    #f4511e 100%)`,
-                  border: '1px solid rgba(255,87,34,0.3)',
-                  borderTop: 'none',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
-                },
-                '&:active': {
-                  background: `linear-gradient(165deg, 
-                    #ff7043 0%,
-                    #f4511e 100%)`,
-                  border: '1px solid rgba(255,87,34,0.3)',
-                  borderTop: 'none',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
-                },
-                '& .MuiButton-startIcon': {
-                  position: 'relative',
-                  zIndex: 1,
-                  '& svg': {
-                    fontSize: '1.2rem'
-                  }
-                },
-                '& .MuiButton-label': {
-                  position: 'relative',
-                  zIndex: 1
-                }
-              }}
-            >
-              Reset filters
-            </Button>
+                  </Stack>
+                </Paper>
+                <Button
+                  variant="outlined"
+                  startIcon={<ResetIcon />}
+                  onClick={resetFilters}
+                  size="small"
+                  sx={{
+                    width: '100%',
+                    borderRadius: '0 0 8px 8px',
+                    textTransform: 'none',
+                    color: 'white',
+                    background: `linear-gradient(165deg, 
+                      #ff7043 0%,
+                      #f4511e 100%)`,
+                    fontSize: '0.8125rem',
+                    fontWeight: 500,
+                    py: 1.5,
+                    border: '1px solid rgba(255,87,34,0.3)',
+                    borderTop: 'none',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    transition: 'all 0.3s ease-in-out',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                    mb: 3,
+                    '&:hover': {
+                      background: `linear-gradient(165deg, 
+                        #ff7043 0%,
+                        #f4511e 100%)`,
+                      border: '1px solid rgba(255,87,34,0.3)',
+                      borderTop: 'none',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+                    },
+                    '&:focus': {
+                      outline: 'none',
+                      background: `linear-gradient(165deg, 
+                        #ff7043 0%,
+                        #f4511e 100%)`,
+                      border: '1px solid rgba(255,87,34,0.3)',
+                      borderTop: 'none',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+                    },
+                    '&:active': {
+                      background: `linear-gradient(165deg, 
+                        #ff7043 0%,
+                        #f4511e 100%)`,
+                      border: '1px solid rgba(255,87,34,0.3)',
+                      borderTop: 'none',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+                    },
+                    '& .MuiButton-startIcon': {
+                      position: 'relative',
+                      zIndex: 1,
+                      '& svg': {
+                        fontSize: '1.2rem'
+                      }
+                    },
+                    '& .MuiButton-label': {
+                      position: 'relative',
+                      zIndex: 1
+                    }
+                  }}
+                >
+                  Reset filters
+                </Button>
+              </>
+            )}
 
             {filteredAnimals.length === 0 ? (
               <Box sx={{ textAlign: 'center', py: 4 }}>
@@ -1123,6 +1140,8 @@ function App() {
                   }
                 </Typography>
               </Box>
+            ) : activeTab === 2 ? (
+              <Timeline spottedAnimals={spottedAnimals} animalsData={animalsData} />
             ) : (
               <Grid container spacing={1}>
                 {filteredAnimals.map(animal => (
